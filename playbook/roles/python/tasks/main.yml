@@ -1,29 +1,41 @@
 ---
- #- name: update pip
-   #shell: >-
-     #source ~/.zshenv ;
-     #if [ -e ~/.anyenv/envs/pyenv ] ; then
-       #pyenv shell "{{ item.version }}" ;
-       #pyenv rehash ;
-       #pip install -U pip ;
-     #fi
-     #executable=/bin/zsh
-   #with_items: "{{ python_and_pkgs }}"
+ - name: update pip
+   shell: >-
+     source ~/.zshenv ;
+     if [ -e ~/.anyenv/envs/pyenv ] ; then
+       pyenv shell "{{ item.version }}" ;
+       pyenv rehash ;
+       pip install -U pip ;
+     fi
+     executable=/bin/zsh
+   with_items: "{{ python_and_pkgs }}"
 
- #- name: install conda modules
-   #shell: >-
-     #source ~/.zshenv ;
-     #if [ -e ~/.anyenv/envs/pyenv ] ; then
-       #pyenv shell "{{ item.version }}" ;
-       #pyenv rehash ;
-       #conda update conda ;
-     #fi
-     #executable=/bin/zsh
-   #with_items: "{{ python_and_pkgs }}"
+ - name: install conda modules
+   shell: >-
+     source ~/.zshenv ;
+     if [ -e ~/.anyenv/envs/pyenv ] ; then
+       pyenv shell "{{ item.version }}" ;
+       pyenv rehash ;
+       conda update conda ;
+     fi
+     executable=/bin/zsh
+   with_items: "{{ python_and_pkgs }}"
 
  - name: install pkgs main
    include: ./inner.yml
    with_items: "{{ python_and_pkgs }}"
    loop_control:
      loop_var: outer_item
+
+ - name: enable RISE
+   shell: >-
+     source ~/.zshenv ;
+     if [ -e ~/.anyenv/envs/pyenv ] ; then
+       pyenv shell "{{ item.version }}" ;
+       pyenv rehash ;
+       jupyter-nbextension install rise --py --sys-prefix ;
+       jupyter-nbextension enable rise --py --sys-prefix ;
+     fi
+     executable=/bin/zsh
+   with_items: "{{ python_and_pkgs }}"
 

@@ -13,6 +13,7 @@ py3_pip_pkgs:
  - Flask-RESTful
  - Janome
  - mecab-python3
+ - RISE
 
 py2_pip_pkgs:
  - ansible
@@ -21,6 +22,7 @@ py2_pip_pkgs:
  - Flask-RESTful
  - Janome
  - mecab-python
+ - RISE
 
 py3_conda_pkgs:
  - chainer
