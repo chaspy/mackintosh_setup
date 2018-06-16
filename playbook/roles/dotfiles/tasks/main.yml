@@ -1,0 +1,33 @@
+---
+ - name: git clone dotfiles
+   git: repo={{ git_url }} dest=~/dotfiles accept_hostkey=yes
+
+ - name: check bundle exists
+   stat:
+     path: ~/.vim/bundle
+   register: vim_bundle
+
+ - name: remove .vim dir
+   file: path=~/.vim state=absent
+   when: not vim_bundle.stat.exists
+
+ - name: unarchive .vim
+   unarchive:
+     src: ~/dotfiles/vim/vim.tar.gz
+     dest: ~/dotfiles/vim/
+   when: not vim_bundle.stat.exists
+
+ - name: set symlink of .vim
+   file:
+     src: ~/dotfiles/vim/.vim
+     dest: ~/dotfiles/.vim
+     state: link
+   when: not vim_bundle.stat.exists
+
+ - name: set symlink of my conf
+   file:
+     src: "{{ item.src }}"
+     dest: "{{ item.dest }}"
+     state: link
+   with_items: "{{ symlink_confs }}"
+

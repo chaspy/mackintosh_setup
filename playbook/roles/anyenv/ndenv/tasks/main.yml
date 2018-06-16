@@ -1,0 +1,10 @@
+---
+ - name: install nodejs
+   shell: >-
+     source ~/.zshenv ;
+     if [ -e "{{ ansible_env.HOME  }}"/.anyenv/envs/ndenv ] ; then
+       ndenv install "{{ item }}" ;
+     fi
+     executable=/bin/zsh
+   with_items: "{{ version }}"
+

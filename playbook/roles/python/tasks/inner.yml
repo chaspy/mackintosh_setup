@@ -1,0 +1,23 @@
+---
+ - name: install "{{ outer_item.version }}" pip pkgs
+   shell: >-
+     source ~/.zshenv ;
+     if [ -e ~/.anyenv/envs/pyenv ] ; then
+       pyenv shell "{{ outer_item.version }}" ;
+       pyenv rehash ;
+       pip install "{{ item }}" ;
+     fi
+     executable=/bin/zsh
+   with_items: "{{ outer_item.pip_pkgs }}"
+
+ - name: install "{{ outer_item.version }}" conda pkgs
+   shell: >-
+     source ~/.zshenv ;
+     if [ -e ~/.anyenv/envs/pyenv ] ; then
+       pyenv shell "{{ outer_item.version }}" ;
+       pyenv rehash ;
+       conda install -y "{{ item }}" ;
+     fi
+     executable=/bin/zsh
+   with_items: "{{ outer_item.conda_pkgs }}"
+

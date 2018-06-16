@@ -1,0 +1,31 @@
+python_and_pkgs:
+  - version: anaconda3-5.2.0
+    pip_pkgs: "{{ py3_pip_pkgs }}"
+    conda_pkgs: "{{ py3_conda_pkgs }}"
+  - version: anaconda2-5.2.0
+    pip_pkgs: "{{ py2_pip_pkgs }}"
+    conda_pkgs: "{{ py2_conda_pkgs }}"
+
+py3_pip_pkgs:
+ - ansible
+ - bpython
+ - Flask-REST
+ - Flask-RESTful
+ - Janome
+ - mecab-python3
+
+py2_pip_pkgs:
+ - ansible
+ - bpython
+ - Flask-REST
+ - Flask-RESTful
+ - Janome
+ - mecab-python
+
+py3_conda_pkgs:
+ - chainer
+ - tensorflow
+
+py2_conda_pkgs:
+ - chainer
+ - tensorflow

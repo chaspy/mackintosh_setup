@@ -1,0 +1,6 @@
+---
+ dependencies:
+   - role: anyenv/core
+   - role: anyenv/ndenv
+   - role: anyenv/rbenv
+   - role: anyenv/pyenv

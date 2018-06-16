@@ -1,0 +1,10 @@
+---
+ - name: install ruby
+   shell: >-
+     source ~/.zshenv ;
+     if [ -e "{{ ansible_env.HOME  }}"/.anyenv/envs/rbenv ] ; then
+       rbenv install "{{ item }}" ;
+     fi
+     executable=/bin/zsh
+   with_items: "{{ version }}"
+

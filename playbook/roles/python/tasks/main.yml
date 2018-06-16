@@ -1,0 +1,29 @@
+---
+ #- name: update pip
+   #shell: >-
+     #source ~/.zshenv ;
+     #if [ -e ~/.anyenv/envs/pyenv ] ; then
+       #pyenv shell "{{ item.version }}" ;
+       #pyenv rehash ;
+       #pip install -U pip ;
+     #fi
+     #executable=/bin/zsh
+   #with_items: "{{ python_and_pkgs }}"
+
+ #- name: install conda modules
+   #shell: >-
+     #source ~/.zshenv ;
+     #if [ -e ~/.anyenv/envs/pyenv ] ; then
+       #pyenv shell "{{ item.version }}" ;
+       #pyenv rehash ;
+       #conda update conda ;
+     #fi
+     #executable=/bin/zsh
+   #with_items: "{{ python_and_pkgs }}"
+
+ - name: install pkgs main
+   include: ./inner.yml
+   with_items: "{{ python_and_pkgs }}"
+   loop_control:
+     loop_var: outer_item
+

@@ -1,0 +1,10 @@
+---
+ - name: install python
+   shell: >-
+     source ~/.zshenv ;
+     if [ -e "{{ ansible_env.HOME  }}"/.anyenv/envs/pyenv ] ; then
+       pyenv install "{{ item }}" ;
+     fi
+     executable=/bin/zsh
+   with_items: "{{ version }}"
+
