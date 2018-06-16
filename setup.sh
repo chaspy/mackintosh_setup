@@ -6,15 +6,15 @@ echo "# DownLoad setup shell from github"
 echo "#"
 echo "# Install xcode-command line tool"
 echo "#"
-#sudo xcodebuild -license
-#sudo xcode-select --install
+sudo xcodebuild -license
+sudo xcode-select --install
 
 echo "#"
 echo "# Install and Update homebrew "
 echo "#"
-#ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-#brew doctor
-#brew update
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew doctor
+brew update
 
 echo "#"
 echo "# Install ansible"
