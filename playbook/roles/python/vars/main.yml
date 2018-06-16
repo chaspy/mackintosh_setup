@@ -27,7 +27,9 @@ py2_pip_pkgs:
 py3_conda_pkgs:
  - chainer
  - tensorflow
+ - keras
 
 py2_conda_pkgs:
  - chainer
  - tensorflow
+ - keras
